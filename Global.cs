@@ -694,115 +694,115 @@ class Global
         // ====================================================================
         // 3. CONFIGURAZIONE DELLE PORTE - SECONDO LO SCHEMA SPECIFICATO
         // ====================================================================
-        // RIGA 0-1: Sala Comandi <-> Corridoio Centrale Nord
-        Porta portaSalaComandi = new Porta("Porta Sala Comandi-Corridoio Centrale Nord", Porta.StatoPorta.Aperta);
-        salaComandi.portaSud = portaSalaComandi;
-        corrCentraleN.portaNord = portaSalaComandi;
+        
+        // SCHEMA COLLEGAMENTI STANZE:
+        // ✅ 12 Collegamenti tra Stanze Normali:
+        //    - Navetta ↔ Porto
+        //    - Porto ↔ Magazzino
+        //    - Magazzino ↔ Sala Motori Ovest (portaOvest)
+        //    - Magazzino ↔ Sala Motori Est (portaEst)
+        //    - Sala Motori Est 1 ↔ Sala Ossigeno
+        //    - Sala Motori Est 2 ↔ Corridoio Est Sud
+        //    - Corridoio Est Nord ↔ Archivio
+        //    - Corridoio Centrale Nord ↔ Ripostiglio
+        //    - Ripostiglio ↔ Corridoio Ovest Nord
+        //    - Corridoio Ovest Sud ↔ Sala Medica
+        //    - Corridoio Centrale Nord ↔ Sala Comandi
+        //    - Archivio ↔ Corridoio Centrale Nord
+        //
+        // ✅ 5 Collegamenti tra Stanze Lunghe:
+        //    - Sala Motori Ovest 1 ↔ Sala Motori Ovest 2
+        //    - Sala Motori Est 1 ↔ Sala Motori Est 2
+        //    - Corridoio Est Nord ↔ Corridoio Est Sud
+        //    - Corridoio Centrale Nord ↔ Corridoio Centrale Sud
+        //    - Corridoio Ovest Nord ↔ Corridoio Ovest Sud
 
-        // RIGA 1: Corridoio Ovest Nord <-> Ripostiglio
-        Porta portaCorrOvestNRipostiglio = new Porta("Porta Corridoio Ovest Nord-Ripostiglio", Porta.StatoPorta.Aperta);
-        corrOvestN.portaEst = portaCorrOvestNRipostiglio;
-        ripostiglio.portaOvest = portaCorrOvestNRipostiglio;
+        // Navetta ↔ Porto
+        Porta portaNavettaPorto = new Porta("Porta Navetta-Porto", Porta.StatoPorta.Aperta);
+        navetta.portaNord = portaNavettaPorto;
+        porto.portaSud = portaNavettaPorto;
 
-        // RIGA 1: Ripostiglio <-> Corridoio Centrale Nord
-        Porta portaRipostCorrCentraleN = new Porta("Porta Ripostiglio-Corridoio Centrale Nord", Porta.StatoPorta.Aperta);
-        ripostiglio.portaEst = portaRipostCorrCentraleN;
-        corrCentraleN.portaOvest = portaRipostCorrCentraleN;
+        // Porto ↔ Magazzino
+        Porta portaPortoMagazzino = new Porta("Porta Porto-Magazzino", Porta.StatoPorta.Aperta);
+        porto.portaNord = portaPortoMagazzino;
+        magazzino.portaSud = portaPortoMagazzino;
 
-        // RIGA 1: Corridoio Centrale Nord <-> Archivio
-        Porta portaCorrCentraleNArchivio = new Porta("Porta Corridoio Centrale Nord-Archivio", Porta.StatoPorta.Aperta);
-        corrCentraleN.portaEst = portaCorrCentraleNArchivio;
-        archivio.portaOvest = portaCorrCentraleNArchivio;
+        // Magazzino ↔ Sala Motori Ovest 2 (portaOvest)
+        Porta portaMagazzinoMotoriOvest2 = new Porta("Porta Magazzino-Sala Motori Ovest 2", Porta.StatoPorta.Aperta);
+        magazzino.portaOvest = portaMagazzinoMotoriOvest2;
+        motoriOvest2.portaEst = portaMagazzinoMotoriOvest2;
 
-        // RIGA 1: Archivio <-> Corridoio Est Nord
-        Porta portaArchivioEstN = new Porta("Porta Archivio-Corridoio Est Nord", Porta.StatoPorta.Aperta);
-        archivio.portaEst = portaArchivioEstN;
-        corrEstN.portaOvest = portaArchivioEstN;
+        // Magazzino ↔ Sala Motori Est 1 (portaEst)
+        Porta portaMagazzinoMotoriEst1 = new Porta("Porta Magazzino-Sala Motori Est 1", Porta.StatoPorta.Aperta);
+        magazzino.portaEst = portaMagazzinoMotoriEst1;
+        motoriEst1.portaOvest = portaMagazzinoMotoriEst1;
 
-        // RIGA 1-2: Corridoio Ovest Nord <-> Corridoio Ovest Sud
-        Porta portaCorrOvestNS = new Porta("Porta Corridoio Ovest Nord-Sud", Porta.StatoPorta.Aperta);
-        corrOvestN.portaSud = portaCorrOvestNS;
-        corrOvestS.portaNord = portaCorrOvestNS;
+        // Sala Motori Est 1 ↔ Sala Ossigeno
+        Porta portaMotoriEst1SalaOssigeno = new Porta("Porta Sala Motori Est 1-Sala Ossigeno", Porta.StatoPorta.Aperta);
+        motoriEst1.portaNord = portaMotoriEst1SalaOssigeno;
+        salaOssigeno.portaSud = portaMotoriEst1SalaOssigeno;
 
-        // RIGA 1-2: Corridoio Centrale Nord <-> Corridoio Centrale Sud
-        Porta portaCorrCentraleNS = new Porta("Porta Corridoio Centrale Nord-Sud", Porta.StatoPorta.Aperta);
-        corrCentraleN.portaSud = portaCorrCentraleNS;
-        corrCentraleS.portaNord = portaCorrCentraleNS;
+        // Sala Motori Est 2 ↔ Corridoio Est Sud
+        Porta portaMotoriEst2CorrEstSud = new Porta("Porta Sala Motori Est 2-Corridoio Est Sud", Porta.StatoPorta.Aperta);
+        motoriEst2.portaNord = portaMotoriEst2CorrEstSud;
+        corrEstS.portaSud = portaMotoriEst2CorrEstSud;
 
-        // RIGA 1-2: Corridoio Est Nord <-> Corridoio Est Sud
-        Porta portaCorrEstNS = new Porta("Porta Corridoio Est Nord-Sud", Porta.StatoPorta.Aperta);
-        corrEstN.portaSud = portaCorrEstNS;
-        corrEstS.portaNord = portaCorrEstNS;
+        // Corridoio Est Nord ↔ Archivio
+        Porta portaCorrEstNordArchivio = new Porta("Porta Corridoio Est Nord-Archivio", Porta.StatoPorta.Aperta);
+        corrEstN.portaOvest = portaCorrEstNordArchivio;
+        archivio.portaEst = portaCorrEstNordArchivio;
 
-        // RIGA 2: Corridoio Ovest Sud <-> Sala Medica
-        Porta portaCorrOvestSSalaMedica = new Porta("Porta Corridoio Ovest Sud-Sala Medica", Porta.StatoPorta.Aperta);
-        corrOvestS.portaEst = portaCorrOvestSSalaMedica;
-        salaMedica.portaOvest = portaCorrOvestSSalaMedica;
+        // Corridoio Centrale Nord ↔ Ripostiglio
+        Porta portaCorrCentraleNRipostiglio = new Porta("Porta Corridoio Centrale Nord-Ripostiglio", Porta.StatoPorta.Aperta);
+        corrCentraleN.portaOvest = portaCorrCentraleNRipostiglio;
+        ripostiglio.portaEst = portaCorrCentraleNRipostiglio;
 
-        // RIGA 2: Sala Medica <-> Corridoio Centrale Sud
-        Porta portaSalaMedicaCorrCentraleS = new Porta("Porta Sala Medica-Corridoio Centrale Sud", Porta.StatoPorta.Aperta);
-        salaMedica.portaEst = portaSalaMedicaCorrCentraleS;
-        corrCentraleS.portaOvest = portaSalaMedicaCorrCentraleS;
+        // Ripostiglio ↔ Corridoio Ovest Nord
+        Porta portaRipostCorrOvestNord = new Porta("Porta Ripostiglio-Corridoio Ovest Nord", Porta.StatoPorta.Aperta);
+        ripostiglio.portaOvest = portaRipostCorrOvestNord;
+        corrOvestN.portaEst = portaRipostCorrOvestNord;
 
-        // RIGA 2: Corridoio Centrale Sud <-> Sala Ossigeno
-        Porta portaCorrCentraleSalaOssigeno = new Porta("Porta Corridoio Centrale Sud-Sala Ossigeno", Porta.StatoPorta.Aperta);
-        corrCentraleS.portaEst = portaCorrCentraleSalaOssigeno;
-        salaOssigeno.portaOvest = portaCorrCentraleSalaOssigeno;
+        // Corridoio Ovest Sud ↔ Sala Medica
+        Porta portaCorrOvestSudSalaMedica = new Porta("Porta Corridoio Ovest Sud-Sala Medica", Porta.StatoPorta.Aperta);
+        corrOvestS.portaEst = portaCorrOvestSudSalaMedica;
+        salaMedica.portaOvest = portaCorrOvestSudSalaMedica;
 
-        // RIGA 2: Sala Ossigeno <-> Corridoio Est Sud
-        Porta portaSalaOssigenoCorrEstS = new Porta("Porta Sala Ossigeno-Corridoio Est Sud", Porta.StatoPorta.Aperta);
-        salaOssigeno.portaEst = portaSalaOssigenoCorrEstS;
-        corrEstS.portaOvest = portaSalaOssigenoCorrEstS;
+        // Corridoio Centrale Nord ↔ Sala Comandi
+        Porta portaCorrCentraleNSalaComandi = new Porta("Porta Corridoio Centrale Nord-Sala Comandi", Porta.StatoPorta.Aperta);
+        corrCentraleN.portaNord = portaCorrCentraleNSalaComandi;
+        salaComandi.portaSud = portaCorrCentraleNSalaComandi;
 
-        // RIGA 2-3: Corridoio Ovest Sud <-> Sala Motori Ovest 1
-        Porta portaCorrOvestSMotoriO1 = new Porta("Porta Corridoio Ovest Sud-Sala Motori Ovest 1", Porta.StatoPorta.Aperta);
-        corrOvestS.portaSud = portaCorrOvestSMotoriO1;
-        motoriOvest1.portaNord = portaCorrOvestSMotoriO1;
+        // Archivio ↔ Corridoio Centrale Nord
+        Porta portaArchivioCorriCentraleN = new Porta("Porta Archivio-Corridoio Centrale Nord", Porta.StatoPorta.Aperta);
+        archivio.portaOvest = portaArchivioCorriCentraleN;
+        corrCentraleN.portaEst = portaArchivioCorriCentraleN;
 
-        // RIGA 2-3: Corridoio Centrale Sud <-> Magazzino
-        Porta portaCorrCentraleSMagazzino = new Porta("Porta Corridoio Centrale Sud-Magazzino", Porta.StatoPorta.Aperta);
-        corrCentraleS.portaSud = portaCorrCentraleSMagazzino;
-        magazzino.portaNord = portaCorrCentraleSMagazzino;
+        // CORRIDOI LUNGHI (5 collegamenti)
+        
+        // Sala Motori Ovest 1 ↔ Sala Motori Ovest 2
+        Porta portaMotoriOvest1Ovest2 = new Porta("Porta Sala Motori Ovest 1-2", Porta.StatoPorta.Aperta);
+        motoriOvest1.portaEst = portaMotoriOvest1Ovest2;
+        motoriOvest2.portaOvest = portaMotoriOvest1Ovest2;
 
-        // RIGA 2-3: Corridoio Est Sud <-> Sala Motori Est 2
-        Porta portaCorrEstSMotoriE2 = new Porta("Porta Corridoio Est Sud-Sala Motori Est 2", Porta.StatoPorta.Aperta);
-        corrEstS.portaSud = portaCorrEstSMotoriE2;
-        motoriEst2.portaNord = portaCorrEstSMotoriE2;
+        // Sala Motori Est 1 ↔ Sala Motori Est 2
+        Porta portaMotoriEst1Est2 = new Porta("Porta Sala Motori Est 1-2", Porta.StatoPorta.Aperta);
+        motoriEst1.portaEst = portaMotoriEst1Est2;
+        motoriEst2.portaOvest = portaMotoriEst1Est2;
 
-        // RIGA 3: Sala Motori Ovest 1 <-> Sala Motori Ovest 2
-        Porta portaMotoriO1O2 = new Porta("Porta Sala Motori Ovest 1-2", Porta.StatoPorta.Aperta);
-        motoriOvest1.portaEst = portaMotoriO1O2;
-        motoriOvest2.portaOvest = portaMotoriO1O2;
+        // Corridoio Est Nord ↔ Corridoio Est Sud
+        Porta portaCorrEstNordSud = new Porta("Porta Corridoio Est Nord-Sud", Porta.StatoPorta.Aperta);
+        corrEstN.portaSud = portaCorrEstNordSud;
+        corrEstS.portaNord = portaCorrEstNordSud;
 
-        // RIGA 3: Sala Motori Ovest 2 <-> Magazzino
-        Porta portaMotoriO2Magazzino = new Porta("Porta Sala Motori Ovest 2-Magazzino", Porta.StatoPorta.Aperta);
-        motoriOvest2.portaEst = portaMotoriO2Magazzino;
-        magazzino.portaOvest = portaMotoriO2Magazzino;
+        // Corridoio Centrale Nord ↔ Corridoio Centrale Sud
+        Porta portaCorrCentraleNordSud = new Porta("Porta Corridoio Centrale Nord-Sud", Porta.StatoPorta.Aperta);
+        corrCentraleN.portaSud = portaCorrCentraleNordSud;
+        corrCentraleS.portaNord = portaCorrCentraleNordSud;
 
-        // RIGA 3: Magazzino <-> Sala Motori Est 1
-        Porta portaMagazzinoMotoriE1 = new Porta("Porta Magazzino-Sala Motori Est 1", Porta.StatoPorta.Aperta);
-        magazzino.portaEst = portaMagazzinoMotoriE1;
-        motoriEst1.portaOvest = portaMagazzinoMotoriE1;
-
-        // RIGA 3: Sala Motori Est 1 <-> Sala Motori Est 2
-        Porta portaMotoriE1E2 = new Porta("Porta Sala Motori Est 1-2", Porta.StatoPorta.Aperta);
-        motoriEst1.portaEst = portaMotoriE1E2;
-        motoriEst2.portaOvest = portaMotoriE1E2;
-
-        // RIGA 3-4: Sala Motori Est 1 <-> Sala Ossigeno
-        Porta portaMotoriE1SalaOssigeno = new Porta("Porta Sala Motori Est 1-Sala Ossigeno", Porta.StatoPorta.Aperta);
-        motoriEst1.portaNord = portaMotoriE1SalaOssigeno;
-        salaOssigeno.portaSud = portaMotoriE1SalaOssigeno;
-
-        // RIGA 4-5: Porto <-> Navetta
-        Porta portaPortoNavetta = new Porta("Porta Porto-Navetta", Porta.StatoPorta.Aperta);
-        porto.portaSud = portaPortoNavetta;
-        navetta.portaNord = portaPortoNavetta;
-
-        // RIGA 3-4: Magazzino <-> Porto
-        Porta portaMagazzinoPorto = new Porta("Porta Magazzino-Porto", Porta.StatoPorta.Aperta);
-        magazzino.portaSud = portaMagazzinoPorto;
-        porto.portaNord = portaMagazzinoPorto;
+        // Corridoio Ovest Nord ↔ Corridoio Ovest Sud
+        Porta portaCorrOvestNordSud = new Porta("Porta Corridoio Ovest Nord-Sud", Porta.StatoPorta.Aperta);
+        corrOvestN.portaSud = portaCorrOvestNordSud;
+        corrOvestS.portaNord = portaCorrOvestNordSud;
 
         // ====================================================================
         // 4. INSERIMENTO NELLA GRIGLIA LOGICA (6 Righe, 5 Colonne)
