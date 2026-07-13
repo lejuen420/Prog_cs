@@ -19,18 +19,18 @@ class Global
         ................../         >SEI QUI<         \
         +---------+-------------+---------------+-------------+---------+
         |         |             |               |             |         |
-        |CORRIDOIO| RIPOSTIGLIO |   CORRIDOIO   |  ARCHIVIO   |CORRIDOIO|
+        |CORRIDOIO. RIPOSTIGLIO .   CORRIDOIO   .  ARCHIVIO   .CORRIDOIO|
         |         |             |               |             |         |
         |  -   -  +-------------+   -   -   -   +-------------+  -   -  |
         |         |             |               |             |         |
-        |  OVEST  | SALA MEDICA |   CENTRALE    |SALA OSSIGENO|   EST   |
+        |  OVEST  . SALA MEDICA |   CENTRALE    |SALA OSSIGENO|   EST   |
         |         |             |               |             |         |
-        +---------+-------------+---------------+-------------+---------+
+        +---------+-------------+---------------+-----...-----+---...---+
         |         :             |               |             :         |
-        | S.MOTORI:  S.MOTORI   |   MAGAZZINO   |  S.MOTORI   : S.MOTORI|
-        | OVEST 1 :   OVEST 2   |               |    EST 1    :  EST 2  |
+        | S.MOTORI:  S.MOTORI   .   MAGAZZINO   .  S.MOTORI   : S.MOTORI|
+        | OVEST 1 :   OVEST 2   .               .    EST 1    :  EST 2  |
         |         :             |               |             :         |
-        +---------+-------------+---------------+-------------+---------+
+        +---------+-------------+------...------+-------------+---------+
         ........................|               |
         ........................|     PORTO     |
         ........................|               |
